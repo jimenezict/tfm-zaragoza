@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 import static java.time.LocalDateTime.now;
@@ -47,7 +48,7 @@ public class ClientServiceImpl implements ClientService {
     private StationsLocation mapStationsLocation(StationLocationMain stationLocationMain) {
         StationsLocation stationsLocation = new StationsLocation(LocalDate.now());
         stationLocationMain.getResult().forEach(x -> {
-            stationsLocation.addStation(x.getId(), x.getGeometry().getCoordinates()[0], x.getGeometry().getCoordinates()[1], x.getTitle());
+            stationsLocation.addStation(x.getId(), x.getGeometry().getCoordinates()[1], x.getGeometry().getCoordinates()[0], x.getTitle());
         });
         return stationsLocation;
     }
